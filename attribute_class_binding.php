@@ -3,10 +3,19 @@
 <head>
       <title>Attribute and Class Binding</title>
       <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+      <style type="text/css">
+          .color-red{
+            color: red;
+          }
+          .is-loading {
+            background: red;
+          }
+      </style>
 </head>
 <body>
     <div id="root">
-        <button v-bind:title="title">Hover Over Me</button> <!-- fungsi v-on:click sama saja dengan @click="addName" -->
+        <h1 :class="className">Hello World</h1>
+        <button v-bind:title="title" :class="{ 'is-loading': isLoading }" @click="toggleClass">Toggle Me</button> <!-- <button :title="title">Hover Over Me</button> penggunaan sama -->
     </div>
 
     <script>
@@ -14,8 +23,16 @@
     	var app = new Vue({
     		el: '#root',
     		data: {
-                title: 'Now the Title is being set through JavaScript.'
+                title: 'Now the Title is being set through JavaScript.',
+                className: 'color-red',
+                isLoading: false
 	    	},
+
+            methods: {
+                toggleClass() {
+                    this.isLoading= true;
+                }
+            }
     	});
     </script>
 </body>
